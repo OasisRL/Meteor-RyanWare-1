@@ -5,6 +5,7 @@ import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.render.color.SettingColor;
 import meteordevelopment.orbit.EventHandler;
+import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Vec3d;
 import smilerryan.ryanware.RyanWare;
@@ -17,6 +18,62 @@ public class PlayerTracers extends Module {
         .name("color")
         .description("Tracer color.")
         .defaultValue(new SettingColor(255, 0, 0, 255))
+        .build()
+    );
+
+    private final Setting<Boolean> ignore0Ping = sgGeneral.add(new BoolSetting.Builder()
+        .name("ignore-0-ping")
+        .description("Ignore players with 0ms ping.")
+        .defaultValue(true)
+        .build()
+    );
+
+    private final Setting<Boolean> ignoreBotTag = sgGeneral.add(new BoolSetting.Builder()
+        .name("ignore-bot-tag")
+        .description("Ignore players containing [BOT].")
+        .defaultValue(true)
+        .build()
+    );
+
+    private final Setting<Boolean> ignoreNpcTag = sgGeneral.add(new BoolSetting.Builder()
+        .name("ignore-npc-tag")
+        .description("Ignore players containing [NPC].")
+        .defaultValue(true)
+        .build()
+    );
+
+    private final Setting<Boolean> ignoreCIT = sgGeneral.add(new BoolSetting.Builder()
+        .name("ignore-cit")
+        .description("Ignore CIT fake players.")
+        .defaultValue(true)
+        .build()
+    );
+
+    private final Setting<Boolean> ignoreInvisible = sgGeneral.add(new BoolSetting.Builder()
+        .name("ignore-invisible")
+        .description("Ignore invisible players.")
+        .defaultValue(true)
+        .build()
+    );
+
+    private final Setting<Boolean> ignoreSpectators = sgGeneral.add(new BoolSetting.Builder()
+        .name("ignore-spectators")
+        .description("Ignore spectators.")
+        .defaultValue(true)
+        .build()
+    );
+
+    private final Setting<Boolean> ignoreNoTabEntry = sgGeneral.add(new BoolSetting.Builder()
+        .name("ignore-no-tab-entry")
+        .description("Ignore players missing from tab list.")
+        .defaultValue(true)
+        .build()
+    );
+
+    private final Setting<Boolean> ignoreBadUUID = sgGeneral.add(new BoolSetting.Builder()
+        .name("ignore-bad-uuid")
+        .description("Ignore non UUID v4 players.")
+        .defaultValue(true)
         .build()
     );
 
@@ -47,13 +104,50 @@ public class PlayerTracers extends Module {
         double sz = pz + forward.z;
 
         for (PlayerEntity player : mc.world.getPlayers()) {
-            if (player == mc.player) continue;
+
+            if (player == mc.player)
+                continue;
+
+            PlayerListEntry entry = mc.getNetworkHandler()
+                .getPlayerListEntry(player.getUuid());
+
+            if (ignoreNoTabEntry.get() && entry == null)
+                continue;
+
+            if (ignore0Ping.get() && entry != null && entry.getLatency() <= 0)
+                continue;
+
+            if (ignoreInvisible.get() && player.isInvisible())
+                continue;
+
+            if (ignoreSpectators.get() && player.isSpectator())
+                continue;
+
+            if (ignoreBadUUID.get() && player.getUuid().version() != 4)
+                continue;
+
 
             String name = stripFormatting(player.getName().getString());
-            if (name.isEmpty()
-                    || name.startsWith("CIT-")
-                    || name.startsWith("[NPC]")
-                    || name.startsWith("[BOT]")) continue;
+            String display = stripFormatting(player.getDisplayName().getString());
+
+
+            if (ignoreBotTag.get()
+                    && (name.contains("[BOT]")
+                    || display.contains("[BOT]")))
+                continue;
+
+
+            if (ignoreNpcTag.get()
+                    && (name.contains("[NPC]")
+                    || display.contains("[NPC]")))
+                continue;
+
+
+            if (ignoreCIT.get()
+                    && (name.startsWith("CIT-")
+                    || display.startsWith("CIT-")))
+                continue;
+
 
             double tx = lerp(player.lastX, player.getX(), t);
             double ty = lerp(player.lastY, player.getY(), t)
