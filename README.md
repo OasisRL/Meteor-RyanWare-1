@@ -1,86 +1,125 @@
 <p align="center">
-  <img src="knowledge_book.png" width="100" alt="Knowledge Book"/>
+  <img src="knowledge_book.png" width="110" alt="Knowledge Book" />
 </p>
 
 <h1 align="center">RyanWare Meteor Addon</h1>
-<p align="center">A powerful addon for Meteor Client designed to make things easier</p>
+<p align="center"><strong><span style="color:#7c3aed">Meteor Client</span> addon with advanced modules, automation, and powerful utilities.</strong></p>
 
 <p align="center">
-  <b>Automation • Combat • Chat • Entertainment • AI • Utility • Experimental</b>
+  <span style="color:#22c55e"><strong>Automation</strong></span> •
+  <span style="color:#f97316"><strong>Combat</strong></span> •
+  <span style="color:#38bdf8"><strong>Chat</strong></span> •
+  <span style="color:#ec4899"><strong>Entertainment</strong></span> •
+  <span style="color:#a855f7"><strong>AI</strong></span> •
+  <span style="color:#facc15"><strong>Utility</strong></span> •
+  <span style="color:#ef4444"><strong>Experimental</strong></span>
 </p>
 
 <p align="center">
-    [<a href="https://github.com/SmilerRyan/Meteor-RyanWare">View on GitHub</a>]
-    [<a href="https://github.com/SmilerRyan/Meteor-RyanWare/archive/refs/heads/main.zip">Download source as zip</a>]
-    [<a href="#installation">Installation Guide</a>]
-    [<a href="https://github.com/SmilerRyan/Meteor-RyanWare/commits/main/">Commit History</a>]
+    [<a href="https://github.com/SmilerRyan/Meteor-RyanWare">GitHub</a>] •
+    [<a href="https://github.com/SmilerRyan/Meteor-RyanWare/archive/refs/heads/main.zip">Download zip</a>] •
+    [<a href="#installation">Install</a>] •
+    [<a href="https://github.com/SmilerRyan/Meteor-RyanWare/commits/main/">Changelog</a>]
 </p>
 
 ---
 
-## Overview
+## 🚀 Project Overview
 
-**RyanWare** is a large **addon** that adds dozens of modules, commands, and utilities for you to use on **Meteor Client**.
+**RyanWare** is a feature-rich Meteor Client addon that extends Minecraft with a wide range of modules, commands, and intelligent utilities.
 
-This is **NOT** a standalone client, this is built **on top of** Meteor Client, and it is required for this addon to be run.
+This addon is designed to run on top of Meteor Client and is not a standalone client. It is built for the latest Minecraft + Meteor Client versions and is best used with the current supported releases.
 
-This addon is aimed for the latest version of Minecraft + Meteor Client, not older versions.<br>
-Using this addon on any version that is not the latest should load, but it isn't supported.
-
-Many modules are experimental, educational or server dependent.<br>
-You are responsible for any usage, including server bans, use it responsibly.<br>
-Using it's features on servers that give you any advanage could be considered cheating.
+> <span style="color:#f59e0b"><strong>Note:</strong></span> Some modules are experimental, server-dependent, or intended for learning and testing. Use responsibly and avoid deploying features on servers where they may violate rules.
 
 ---
 
-<b id="installation"></b>
-## Installation
+## ✨ Key Features
 
-### Option A: Install seperately as an Addon
-1. Install Meteor Client, currently (<a href="meteor-client-1.21.11-82.jar">meteor-client-1.21.11-82.jar</a>) works best.
-2. Build the RyanWare `.jar` from source or <a href="RyanWare-addon.jar">download it from GitHub</a> directly.
-3. Put Meteor Client and RyanWare in your `.minecraft/mods` folder.
-4. Launch the game with Fabric.
-
-### Option B: Install Standalone (With Meteor Client 1.21.11 included)
-1. Download the standalone version from GitHub: <a href="RyanWare-standalone.jar">RyanWare-standalone.jar</a>
-2. Put `RyanWare-standalone.jar` in your `.minecraft/mods` folder.
-3. Launch the game using Fabric 1.21.11 (required).
+- <span style="color:#34d399">Automation</span>: auto-mine, auto-follow, auto-click, auto-groom, and more
+- <span style="color:#fb7185">Combat Enhancements</span>: aura, anti-block, auto-attack, and targeted utilities
+- <span style="color:#60a5fa">Chat Tools</span>: auto chat screenshotter, auto responder, commands, and chat helpers
+- <span style="color:#fbbf24">Utility Modules</span>: item frame dupe, chest mover, highway builder, teleport tools
+- <span style="color:#c084fc">AI & Experimental</span>: smart responders, module experiments, and developer-focused tools
+- Easy build support for both addon and standalone packaging
 
 ---
 
-## Building
+## 📦 Installation
 
-You need to download <a href="https://services.gradle.org/distributions/gradle-8.13-bin.zip">Gradle 8.13</a> and <a href="https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.zip">Java 21 JDK</a> before the build step will work.
-<br>
-The build script will use the ``gradle-8.13`` and ``jdk-21.0.11`` directories in this automatically if found, or just manually run:
+### Option A: Addon mode
+1. Install Meteor Client.
+2. Build RyanWare or download the addon JAR from GitHub.
+3. Place both Meteor Client and `RyanWare-addon.jar` into `.minecraft/mods`.
+4. Launch Minecraft using Fabric.
 
-```
+### Option B: Standalone mode
+1. Download `RyanWare-standalone.jar` from GitHub.
+2. Place it in `.minecraft/mods`.
+3. Launch Minecraft with Fabric (recommended Fabric 1.21.11 for best compatibility).
+
+> <span style="color:#2563eb"><strong>Recommended:</strong></span> Use the latest Meteor Client version available and keep the addon updated alongside Meteor.
+
+---
+
+## 🛠️ Building from Source
+
+Required tools:
+- Java 21 JDK
+- Gradle 8.13
+
+Build command:
+
+```bash
 ./gradlew clean build --no-daemon
-````
-
-Output:
-
 ```
+
+Expected output:
+
+```text
 ./build/libs/meteor-RyanWare-0.1-addon.jar
 ./build/libs/meteor-RyanWare-0.1-standalone.jar
 ```
 
 ---
 
-## License and credits
+## 📁 Recommended Setup
 
-Licensed under **GPL v3** (The same as Meteor Client).
+For a clean environment:
+- Use a fresh Fabric installation.
+- Keep Meteor Client and RyanWare in `.minecraft/mods`.
+- Back up game saves before testing experimental modules.
 
-You must:
+---
 
-* Open-source your project if using this code
-* Credit this project
-* Use the same license
+## 🧠 Compatibility
+
+- Target platform: Minecraft + Meteor Client
+- Best used with the latest supported Meteor Client build
+- Standalone build ships with embedded Meteor Client support
+- Older game or client versions may work but are not officially supported
+
+---
+
+## ⚖️ License and Credits
+
+Licensed under **GPL v3**.
+
+You are required to:
+- open-source derivative projects
+- preserve the same license
+- credit the original project when using this code
 
 Credits:
+- Meteor Development Team — Meteor Client and API foundation
+- AntiCope — base inspiration from Meteor Crash Addon
+- ChatGPT & AI tools — development assistance
+- All RyanWare contributors — testing, suggestions, and code
 
-* Meteor Development Team (For making Meteor Client and APIs) [<a href="https://github.com/MeteorDevelopment">Source</a>]
-* AntiCope for their Meteor Crash Addon (used as addon starting base) [<a href="https://github.com/AntiCope/meteor-crash-addon/tree/0d64cc11330447d2821747f0b7f7566d6192b258">Source</a>]
-* ChatGPT and other various AIs (For development on the RyanWare source code)
-* All RyanWare contributors (For testing, suggesting, or providing code for this project)
+---
+
+## 📝 Notes
+
+- This addon is built for experimentation and utility.
+- Some modules may be flagged as cheating on multiplayer servers.
+- Use with care and respect community/server rules.
